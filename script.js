@@ -1,3 +1,5 @@
+'use strict';
+
 const rpsArray = [
     'Rock', 'Paper', 'Scissors'
 ]
@@ -9,31 +11,52 @@ const computerPlay = function () {
 // let playerSelection = prompt("Rock Paper or Scissors")
 
 const playRound = function (computerSelection, playerSelection) {
-    if (computerSelection === 'Rock' && playerSelection === 'Scissors') {
-        //Computer win scenarioues 
-        return `You lose! ${computerSelection} beats ${playerSelection}`
-    } else if (computerSelection === 'Paper' && playerSelection === 'Rocks') {
-        return `You lose! ${computerSelection} beats ${playerSelection}`
-    } else if ((computerSelection === 'Scissors' && playerSelection === 'Paper')) {
-        return `You lose! ${computerSelection} beats ${playerSelection}`
-        // Tie Game Scenarioes 
-    } else if ((computerSelection === 'Rock' && playerSelection === 'Rock')) {
-        return `Tie Computers ${computerSelection} is the same as Players ${playerSelection}`
-    } else if ((computerSelection === 'Paper' && playerSelection === 'Paper')) {
-        return `Tie Computers ${computerSelection} is the same as Players ${playerSelection}`
-    } else if ((computerSelection === 'Scissor' && playerSelection === 'Scissor')) {
-        return `Tie Computers ${computerSelection} is the same as Players ${playerSelection}`
-        // Player win scenarioues 
-    } else if (playerSelection === 'Scissor' && computerSelection === 'Paper') {
-        return ` ${playerSelection} beats ${computerSelection} Player wins `
-    } else if (playerSelection === 'Paper' && computerSelection === 'rock') {
-        return ` ${playerSelection} beats ${computerSelection} Player wins `
-    } else if (playerSelection === 'Rock' && computerSelection === 'Scissor') {
-        return ` ${playerSelection} beats ${computerSelection} Player wins `
+
+    // TIE 
+    if (playerSelection === computerSelection) {
+        return `Both players selected ${playerSelection}`
+    }
+    // ROCK
+    if (playerSelection === "Rock") {
+        if (computerSelection === "Scissors") {
+            return ` ${playerSelection} beats ${computerSelection} Player you win`
+        } else {
+            return ` ${computerSelection} beats ${playerSelection}Computer wins`
+        }
+    }
+    // Paper
+    else if (playerSelection === "Paper") {
+        if (computerSelection === "Rock") {
+            return ` ${playerSelection} beats ${computerSelection} Player you win`
+        } else {
+            return ` ${computerSelection} beats ${playerSelection}Computer wins`
+        }
+    }
+    // scissors
+    else {
+        if (computerSelection === "Paper") {
+
+            return ` ${playerSelection} beats ${computerSelection} Player you win`
+        } else {
+            return ` ${computerSelection} beats ${playerSelection}Computer wins `
+        }
+    }
+}
+
+let playerSelection = prompt("Rock Paper or Scissors")
+const computerSelection = computerPlay()
+console.log(playRound(playerSelection, computerSelection))
+
+
+const game = function () {
+    for (let i = 0; i < 5; i++) {
+
+
+        console.log(playRound(), 'Round', i)
+
     }
 
 }
 
-const playerSelection = 'Rock'
-const computerSelection = computerPlay()
-console.log(playRound(playerSelection, computerSelection))
+game()
+
